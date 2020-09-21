@@ -12,74 +12,21 @@ head
   link(rel='stylesheet' href='css/flaticon.css')
   link(rel='stylesheet' href='css/style.css')
 
-nav#ftco-navbar.navbar.navbar-expand-lg.navbar-dark.ftco_navbar.bg-dark.ftco-navbar-light
-  .container
-    a.navbar-brand(href='index.html')
-      | Liquor 
-      span store
-    .order-lg-last.btn-group
-      a.btn-cart.dropdown-toggle.dropdown-toggle-split(href='#' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
-        span.flaticon-shopping-bag
-        .d-flex.justify-content-center.align-items-center
-          small 3
-      .dropdown-menu.dropdown-menu-right
-        .dropdown-item.d-flex.align-items-start(href='#')
-          .img(style='background-image: url(images/prod-1.jpg);')
-          .text.pl-3
-            h4 Bacardi 151
-            p.mb-0
-              a.price(href='#') $25.99
-              span.quantity.ml-3 Quantity: 01
-        .dropdown-item.d-flex.align-items-start(href='#')
-          .img(style='background-image: url(images/prod-2.jpg);')
-          .text.pl-3
-            h4 Jim Beam Kentucky Straight
-            p.mb-0
-              a.price(href='#') $30.89
-              span.quantity.ml-3 Quantity: 02
-        .dropdown-item.d-flex.align-items-start(href='#')
-          .img(style='background-image: url(images/prod-3.jpg);')
-          .text.pl-3
-            h4 Citadelle
-            p.mb-0
-              a.price(href='#') $22.50
-              span.quantity.ml-3 Quantity: 01
-        a.dropdown-item.text-center.btn-link.d-block.w-100(href='cart.html')
-          | View All
-          span.ion-ios-arrow-round-forward
-    button.navbar-toggler(type='button' data-toggle='collapse' data-target='#ftco-nav' aria-controls='ftco-nav' aria-expanded='false' aria-label='Toggle navigation')
-      span.oi.oi-menu
-      |  Menu
-    #ftco-nav.collapse.navbar-collapse
-      ul.navbar-nav.ml-auto
-        li.nav-item.active
-          a.nav-link(href='index.html') Home
-        li.nav-item
-          a.nav-link(href='about.html') About
-        li.nav-item.dropdown
-          a#dropdown04.nav-link.dropdown-toggle(href='#' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false') Products
-          .dropdown-menu(aria-labelledby='dropdown04')
-            a.dropdown-item(href='product.html') Products
-            a.dropdown-item(href='product-single.html') Single Product
-            a.dropdown-item(href='cart.html') Cart
-            a.dropdown-item(href='checkout.html') Checkout
-        li.nav-item
-          a.nav-link(href='blog.html') Blog
-        li.nav-item
-          a.nav-link(href='contact.html') Contact
-// END nav
-.hero-wrap(style="background-image: url('images/bg_2.jpg');" data-stellar-background-ratio='0.5')
+include ./navbar
+
+.hero-wrap(style="background-image: url('images/bg_final2.png');" data-stellar-background-ratio='0.5')
   .overlay
   .container
     .row.no-gutters.slider-text.align-items-center.justify-content-center
       .col-md-8.ftco-animate.d-flex.align-items-end
         .text.w-100.text-center
           h1.mb-4
-            | Good 
-            span Drink
-            |  for Good 
-            span Moments
-            | .
+            | Unique, 
+            span Handcrafted
+            |  Earrings at an 
+            span Affordable
+            |  price. 
+           
           p
             a.btn.btn-primary.py-2.px-4(href='#') Shop Now
             a.btn.btn-white.btn-outline-white.py-2.px-4(href='#') Read more
