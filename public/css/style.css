@@ -8332,13 +8332,15 @@ h1, h2, h3, h4, h5,
     .ftco-navbar-light.scrolled .navbar-brand {
       color: #000000; }
       .ftco-navbar-light.scrolled .navbar-brand span {
-        color: #b7472a; }
+        color: #535050; }
 
 .navbar-brand {
   font-weight: 700;
   font-size: 24px;
   position: relative;
-  text-transform: uppercase; }
+  text-transform: uppercase;
+  font-style: italic;
+}
 
 .hero-wrap {
   width: 100%;
@@ -8533,13 +8535,13 @@ h1, h2, h3, h4, h5,
   .btn:hover, .btn:active, .btn:focus {
     outline: none; }
   .btn.btn-primary {
-    background: #b7472a !important;
-    border: 1px solid #b7472a !important;
+    background: #1a1a1a !important;
+    border: 1px solid white !important;
     color: #fff !important; }
     .btn.btn-primary:hover {
-      border: 1px solid #b7472a;
-      background: transparent;
-      color: #b7472a; }
+      border: 1px solid black !important;
+      background: white !important;
+      color: black !important; }
     .btn.btn-primary.btn-outline-primary {
       border: 1px solid #b7472a;
       background: transparent;
@@ -8561,24 +8563,25 @@ h1, h2, h3, h4, h5,
       background: transparent !important;
       color: #fff !important; }
       .btn.btn-white.btn-outline-white:hover {
-        border: 1px solid #b7472a !important;
+        border: 1px solid black !important;
+        color: black !important;
         background: #b7472a !important;
         color: #fff !important; }
 
 .ftco-intro {
-  background: #b7472a; }
+  background: #1A1A1A; }
   .ftco-intro .intro {
     z-index: 0;
     position: relative; }
 
 .intro {
   width: 100%;
-  background: #b7472a;
+  background: #1A1A1A;
   padding: 30px; }
   .intro.color-1 {
-    background: #ab4227; }
+    background: #252424; }
   .intro.color-2 {
-    background: #a23f25; }
+    background: #1A1A1A; }
   .intro .icon {
     margin-right: 20px; }
     .intro .icon span {
@@ -8906,7 +8909,7 @@ h1, h2, h3, h4, h5,
         width: 32%; }
 
 .table-wrap {
-  overflow-x: scroll; }
+  overflow-x: auto; }
 
 .table {
   min-width: 1000px !important;

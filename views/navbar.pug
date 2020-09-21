@@ -3,36 +3,23 @@
 nav#ftco-navbar.navbar.navbar-expand-lg.navbar-dark.ftco_navbar.bg-dark.ftco-navbar-light
   .container
     a.navbar-brand(href='/')
-      | Liquor 
-      span store
+      | Serafina's 
+      span Soiree
     .order-lg-last.btn-group
       a.btn-cart.dropdown-toggle.dropdown-toggle-split(href='#' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
         span.flaticon-shopping-bag
         .d-flex.justify-content-center.align-items-center
-          small 3
+          small= `${cart.numItems}`
       .dropdown-menu.dropdown-menu-right
-        .dropdown-item.d-flex.align-items-start(href='#')
-          .img(style='background-image: url(images/prod-1.jpg);')
-          .text.pl-3
-            h4 Bacardi 151
-            p.mb-0
-              a.price(href='#') $25.99
-              span.quantity.ml-3 Quantity: 01
-        .dropdown-item.d-flex.align-items-start(href='#')
-          .img(style='background-image: url(images/prod-2.jpg);')
-          .text.pl-3
-            h4 Jim Beam Kentucky Straight
-            p.mb-0
-              a.price(href='#') $30.89
-              span.quantity.ml-3 Quantity: 02
-        .dropdown-item.d-flex.align-items-start(href='#')
-          .img(style='background-image: url(images/prod-3.jpg);')
-          .text.pl-3
-            h4 Citadelle
-            p.mb-0
-              a.price(href='#') $22.50
-              span.quantity.ml-3 Quantity: 01
-        a.dropdown-item.text-center.btn-link.d-block.w-100(href='cart.html')
+        each item in cart.cartItems
+          .dropdown-item.d-flex.align-items-start(href='#')
+            .img(style=`background-image: url(images/${item.imageURL});`)
+            .text.pl-3
+              h4= `${item.title}`
+              p.mb-0
+                a.price(href='#')= `$${item.price}`
+                span.quantity.ml-3= `Quantity: ${item.quantity}`
+        a.dropdown-item.text-center.btn-link.d-block.w-100(href='/cart')
           | View All
           span.ion-ios-arrow-round-forward
     button.navbar-toggler(type='button' data-toggle='collapse' data-target='#ftco-nav' aria-controls='ftco-nav' aria-expanded='false' aria-label='Toggle navigation')

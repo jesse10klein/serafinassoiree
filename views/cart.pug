@@ -1,6 +1,6 @@
 doctype html
 head
-  title Liquor Store - Free Bootstrap 4 Template by Colorlib
+  title Serafina's Soiree
   meta(charset='utf-8')
   meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
   link(href='https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,200;0,300;0,400;0,500;0,700;0,800;1,200;1,300;1,400;1,500;1,700&display=swap' rel='stylesheet')
@@ -29,6 +29,7 @@ section.hero-wrap.hero-wrap-2(style="background-image: url('images/bg_2.jpg');" 
             | Cart 
             i.fa.fa-chevron-right
         h2.mb-0.bread My Cart
+
 section.ftco-section
   .container
     .row
@@ -44,103 +45,25 @@ section.ftco-section
               th total
               th &nbsp;
           tbody
-            tr.alert(role='alert')
+
+            each item in cart.cartItems
+              tr.alert(role='alert')
               td
                 label.checkbox-wrap.checkbox-primary
                   input(type='checkbox' checked='')
                   span.checkmark
               td
-                .img(style='background-image: url(images/prod-1.jpg);')
+                .img(style=`background-image: url(images/${item.imageURL});`)
               td
                 .email
-                  span Jim Beam Kentucky Straight
-                  span Fugiat voluptates quasi nemo, ipsa perferendis
+                  span= `${item.title}`
+                  span= `${item.description}`
               td $44.99
               td.quantity
                 .input-group
-                  input.quantity.form-control.input-number(type='text' name='quantity' value='2' min='1' max='100')
-              td $89.98
+                  input.quantity.form-control.input-number(type='text' name='quantity' value=`${item.quantity}` min='1' max='100')
+              td= `$${item.price}`
               td
-                button.close(type='button' data-dismiss='alert' aria-label='Close')
-                  span(aria-hidden='true')
-                    i.fa.fa-close
-            tr.alert(role='alert')
-              td
-                label.checkbox-wrap.checkbox-primary
-                  input(type='checkbox')
-                  span.checkmark
-              td
-                .img(style='background-image: url(images/prod-2.jpg);')
-              td
-                .email
-                  span Jim Beam Kentucky Straight
-                  span Fugiat voluptates quasi nemo, ipsa perferendis
-              td $30.99
-              td.quantity
-                .input-group
-                  input.quantity.form-control.input-number(type='text' name='quantity' value='1' min='1' max='100')
-              td $30.99
-              td
-                button.close(type='button' data-dismiss='alert' aria-label='Close')
-                  span(aria-hidden='true')
-                    i.fa.fa-close
-            tr.alert(role='alert')
-              td
-                label.checkbox-wrap.checkbox-primary
-                  input(type='checkbox')
-                  span.checkmark
-              td
-                .img(style='background-image: url(images/prod-3.jpg);')
-              td
-                .email
-                  span Jim Beam Kentucky Straight
-                  span Fugiat voluptates quasi nemo, ipsa perferendis
-              td $35.50
-              td.quantity
-                .input-group
-                  input.quantity.form-control.input-number(type='text' name='quantity' value='1' min='1' max='100')
-              td $35.50
-              td
-                button.close(type='button' data-dismiss='alert' aria-label='Close')
-                  span(aria-hidden='true')
-                    i.fa.fa-close
-            tr.alert(role='alert')
-              td
-                label.checkbox-wrap.checkbox-primary
-                  input(type='checkbox')
-                  span.checkmark
-              td
-                .img(style='background-image: url(images/prod-4.jpg);')
-              td
-                .email
-                  span Jim Beam Kentucky Straight
-                  span Fugiat voluptates quasi nemo, ipsa perferendis
-              td $76.99
-              td.quantity
-                .input-group
-                  input.quantity.form-control.input-number(type='text' name='quantity' value='1' min='1' max='100')
-              td $76.99
-              td
-                button.close(type='button' data-dismiss='alert' aria-label='Close')
-                  span(aria-hidden='true')
-                    i.fa.fa-close
-            tr.alert(role='alert')
-              td.border-bottom-0
-                label.checkbox-wrap.checkbox-primary
-                  input(type='checkbox')
-                  span.checkmark
-              td.border-bottom-0
-                .img(style='background-image: url(images/prod-5.jpg);')
-              td.border-bottom-0
-                .email
-                  span Jim Beam Kentucky Straight
-                  span Fugiat voluptates quasi nemo, ipsa perferendis
-              td.border-bottom-0 $40.00
-              td.quantity.border-bottom-0
-                .input-group
-                  input.quantity.form-control.input-number(type='text' name='quantity' value='1' min='1' max='100')
-              td.border-bottom-0 $40.00
-              td.border-bottom-0
                 button.close(type='button' data-dismiss='alert' aria-label='Close')
                   span(aria-hidden='true')
                     i.fa.fa-close
@@ -163,117 +86,9 @@ section.ftco-section
             span $17.60
         p.text-center
           a.btn.btn-primary.py-3.px-4(href='checkout.html') Proceed to Checkout
-footer.ftco-footer
-  .container
-    .row.mb-5
-      .col-sm-12.col-md
-        .ftco-footer-widget.mb-4
-          h2.ftco-heading-2.logo
-            a(href='#')
-              | Liquor 
-              span Store
-          p Far far away, behind the word mountains, far from the countries.
-          ul.ftco-footer-social.list-unstyled.mt-2
-            li.ftco-animate
-              a(href='#')
-                span.fa.fa-twitter
-            li.ftco-animate
-              a(href='#')
-                span.fa.fa-facebook
-            li.ftco-animate
-              a(href='#')
-                span.fa.fa-instagram
-      .col-sm-12.col-md
-        .ftco-footer-widget.mb-4.ml-md-4
-          h2.ftco-heading-2 My Accounts
-          ul.list-unstyled
-            li
-              a(href='#')
-                span.fa.fa-chevron-right.mr-2
-                | My Account
-            li
-              a(href='#')
-                span.fa.fa-chevron-right.mr-2
-                | Register
-            li
-              a(href='#')
-                span.fa.fa-chevron-right.mr-2
-                | Log In
-            li
-              a(href='#')
-                span.fa.fa-chevron-right.mr-2
-                | My Order
-      .col-sm-12.col-md
-        .ftco-footer-widget.mb-4.ml-md-4
-          h2.ftco-heading-2 Information
-          ul.list-unstyled
-            li
-              a(href='#')
-                span.fa.fa-chevron-right.mr-2
-                | About us
-            li
-              a(href='#')
-                span.fa.fa-chevron-right.mr-2
-                | Catalog
-            li
-              a(href='#')
-                span.fa.fa-chevron-right.mr-2
-                | Contact us
-            li
-              a(href='#')
-                span.fa.fa-chevron-right.mr-2
-                | Term &amp; Conditions
-      .col-sm-12.col-md
-        .ftco-footer-widget.mb-4
-          h2.ftco-heading-2 Quick Link
-          ul.list-unstyled
-            li
-              a(href='#')
-                span.fa.fa-chevron-right.mr-2
-                | New User
-            li
-              a(href='#')
-                span.fa.fa-chevron-right.mr-2
-                | Help Center
-            li
-              a(href='#')
-                span.fa.fa-chevron-right.mr-2
-                | Report Spam
-            li
-              a(href='#')
-                span.fa.fa-chevron-right.mr-2
-                | Faq&apos;s
-      .col-sm-12.col-md
-        .ftco-footer-widget.mb-4
-          h2.ftco-heading-2 Have a Questions?
-          .block-23.mb-3
-            ul
-              li
-                span.icon.fa.fa-map.marker
-                span.text 203 Fake St. Mountain View, San Francisco, California, USA
-              li
-                a(href='#')
-                  span.icon.fa.fa-phone
-                  span.text +2 392 3929 210
-              li
-                a(href='#')
-                  span.icon.fa.fa-paper-plane.pr-4
-                  span.text info@yourdomain.com
-  .container-fluid.px-0.py-5.bg-black
-    .container
-      .row
-        .col-md-12
-          p.mb-0(style='color: rgba(255,255,255,.5);')
-            // Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0.
-            | Copyright &copy;
-            script.
-              document.write(new Date().getFullYear());
-            |  All rights reserved | This template is made with 
-            i.fa.fa-heart.color-danger(aria-hidden='true')
-            |  by 
-            a(href='https://colorlib.com' target='_blank') Colorlib.com
-            // Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0.
-// loader
+
+include ./footer
+
 #ftco-loader.show.fullscreen
   svg.circular(width='48px' height='48px')
     circle.path-bg(cx='24' cy='24' r='22' fill='none' stroke-width='4' stroke='#eeeeee')
