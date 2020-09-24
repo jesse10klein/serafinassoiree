@@ -27,11 +27,15 @@ const cartItems = [
     quantity: 1,
     description: 'This will be a description eventually'
   }
-]
+];
 
 app.set('view engine', 'pug')
 
 app.use(express.static('public'))
+
+const productRoutes = require('./routes/products');
+app.use('/product', productRoutes);
+
 
 
 app.get('/', (req, res) => {
@@ -69,13 +73,6 @@ app.get('/contact', (req, res) => {
   });
 })
 
-app.get('/product', (req, res) => {
-  res.render(path.join(__dirname, '/views/product'), {
-    active: {product: true},
-    cart: {numItems: cartItems.length, cartItems}
-  });
-})
-
 app.get('/checkout', (req, res) => {
   res.render(path.join(__dirname+'/views/checkout'), {
     active: {checkout: true},
@@ -86,5 +83,7 @@ app.get('/checkout', (req, res) => {
 
 
 
-const port = 3000;
+
+
+const port = 3001;
 app.listen(port, () => console.log(`App listening on port ${port}`));
