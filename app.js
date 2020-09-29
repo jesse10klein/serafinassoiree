@@ -8,30 +8,33 @@ const app = express();
 const cartItems = [
   {
     title: 'Bicardi 151',
-    imageURL: 'prod-1.jpg',
+    imageURL: 'cat1.PNG',
     price: 25.99,
     quantity: 1,
-    description: 'This will be a description eventually'
+    description: 'This will be a description eventually',
+    id: 0
   },
   {
     title: 'Jim Beam Kentucky Straight',
-    imageURL: 'prod-2.jpg',
+    imageURL: 'cat1.PNG',
     price: 30.89,
     quantity: 2,
-    description: 'This will be a description eventually'
+    description: 'This will be a description eventually',
+    id: 1
   },
   {
     title: 'Citadelle',
-    imageURL: 'prod-3.jpg',
+    imageURL: 'cat1.PNG',
     price: 25.99,
     quantity: 1,
-    description: 'This will be a description eventually'
+    description: 'This will be a description eventually',
+    id: 2
   }
 ];
 
 app.set('view engine', 'pug')
 
-app.use(express.static('public'))
+app.use(express.static(__dirname + '/public'));
 
 const productRoutes = require('./routes/products');
 app.use('/product', productRoutes);

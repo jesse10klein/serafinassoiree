@@ -1,0 +1,14 @@
+
+
+.cartButton {
+  padding: 0px;
+  margin-top: 15px !important;
+  margin: 0px;
+  background-color: transparent;
+  border: none;
+}
+
+.cartButton:hover {
+  color: rgb(236, 65, 65);
+  transition: 0.3s;
+}

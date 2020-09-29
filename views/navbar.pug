@@ -14,11 +14,14 @@ nav#ftco-navbar.navbar.navbar-expand-lg.navbar-dark.ftco_navbar.bg-dark.ftco-nav
         each item in cart.cartItems
           .dropdown-item.d-flex.align-items-start(href='#')
             .img(style=`background-image: url(images/${item.imageURL});`)
+            p.id(style='display: none')= `${item.id}`
             .text.pl-3
               h4= `${item.title}`
               p.mb-0
                 a.price(href='#')= `$${item.price}`
                 span.quantity.ml-3= `Quantity: ${item.quantity}`
+
+            button.cartButton(onClick="removeItem(this)")= 'X'
         a.dropdown-item.text-center.btn-link.d-block.w-100(href='/cart')
           | View All
           span.ion-ios-arrow-round-forward
