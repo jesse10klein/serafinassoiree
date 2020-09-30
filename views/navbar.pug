@@ -8,23 +8,26 @@ nav#ftco-navbar.navbar.navbar-expand-lg.navbar-dark.ftco_navbar.bg-dark.ftco-nav
     .order-lg-last.btn-group
       a.btn-cart.dropdown-toggle.dropdown-toggle-split(href='#' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
         span.flaticon-shopping-bag
-        .d-flex.justify-content-center.align-items-center
+        .d-flex.justify-content-center.align-items-center#cartNumItems
           small= `${cart.numItems}`
       .dropdown-menu.dropdown-menu-right
-        each item in cart.cartItems
-          .dropdown-item.d-flex.align-items-start(href='#')
-            .img(style=`background-image: url(images/${item.imageURL});`)
-            p.id(style='display: none')= `${item.id}`
-            .text.pl-3
-              h4= `${item.title}`
-              p.mb-0
-                a.price(href='#')= `$${item.price}`
-                span.quantity.ml-3= `Quantity: ${item.quantity}`
+        if cart.numItems
+          each item in cart.cartItems
+            .dropdown-item.d-flex.align-items-start(href='#')
+              .img(style=`background-image: url(/images/${item.imageURL});`)
+              p.id(style='display: none')= `${item.id}`
+              .text.pl-3
+                h4= `${item.title}`
+                p.mb-0
+                  a.price(href='#')= `$${item.price}`
+                  span.quantity.ml-3= `Quantity: ${item.quantity}`
 
-            button.cartButton(onClick="removeItem(this)")= 'X'
-        a.dropdown-item.text-center.btn-link.d-block.w-100(href='/cart')
-          | View All
-          span.ion-ios-arrow-round-forward
+              button.cartButton(onClick="removeItem(this)")= 'X'
+          a.dropdown-item.text-center.btn-link.d-block.w-100(href='/cart')
+            | View All
+            span.ion-ios-arrow-round-forward
+        else
+          h3#emptyCart No items in cart
     button.navbar-toggler(type='button' data-toggle='collapse' data-target='#ftco-nav' aria-controls='ftco-nav' aria-expanded='false' aria-label='Toggle navigation')
       span.oi.oi-menu
       |  Menu

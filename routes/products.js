@@ -1,8 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const path = require('path');
-const cookieParser = require('cookie-parser');
-router.use(cookieParser())
+
 const itemsAvailable = [
   {
     imageURL: "cat1.PNG",
@@ -60,29 +59,6 @@ const itemsAvailable = [
   }
 ];
 
-const cartItems = [
-  {
-    title: 'Bicardi 151',
-    imageURL: 'cat1.PNG',
-    price: 25.99,
-    quantity: 1,
-    description: 'This will be a description eventually'
-  },
-  {
-    title: 'Jim Beam Kentucky Straight',
-    imageURL: 'cat1.PNG',
-    price: 30.89,
-    quantity: 2,
-    description: 'This will be a description eventually'
-  },
-  {
-    title: 'Citadelle',
-    imageURL: 'cat1.PNG',
-    price: 25.99,
-    quantity: 1,
-    description: 'This will be a description eventually'
-  }
-];
 
 const collections = ['Sale', 'New Arrivals', 'Summer', 'Winter', 'Autumn', 'Spring'];
 
@@ -90,7 +66,7 @@ const collections = ['Sale', 'New Arrivals', 'Summer', 'Winter', 'Autumn', 'Spri
 router.get('/', (req, res) => {
   res.render(path.join(__dirname, '../views/product'), {
     active: {product: true},
-    cart: {numItems: cartItems.length, cartItems},
+    cart: {numItems: res.locals.cartItems.length, cartItems: res.locals.cartItems},
     products: itemsAvailable,
     selected: {all: true}
   });
@@ -98,10 +74,9 @@ router.get('/', (req, res) => {
 
 //Get a specific product
 router.get('/:productID', (req, res) => {
-  console.log(req.cookies);
   res.render(path.join(__dirname, '../views/product-single'), {
     active: {product: true},
-    cart: {numItems: cartItems.length, cartItems}
+    cart: {numItems: res.locals.cartItems.length, cartItems: res.locals.cartItems}
   });
 
 })

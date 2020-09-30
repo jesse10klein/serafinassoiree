@@ -23,6 +23,39 @@ function getCookie(cname) {
   return "";
 }
 
+function removeItem(element) {
+
+  $('#cartNumItems')[0].innerText -= 1;
+  if ($('#cartNumItems')[0].innerText == 0) {
+    const container = $(element).parent().parent();
+    container.empty();
+    container.append('<h3 id="emptyCart"> No items in cart </h3>');
+  } else {
+    $(element).parent().remove()
+  }
+
+  const itemID = $(element).prev().prev()[0].innerText;
+
+  const cartItems = getCartItemsList();
+
+  for (let i = 0; i < cartItems.length; i++) {
+    if (cartItems[i].itemID == itemID) {
+      cartItems.splice(i, 1);
+      break;
+    }
+  }
+  console.log(cartItems);
+
+  let cartStrings = [];
+  for (let i = 0; i < cartItems.length; i++) {
+    cartStrings.push(JSON.stringify(cartItems[i]));
+  }
+
+  const finalCookieString = cartStrings.join('-');
+  setCookie('cartItems', finalCookieString, 1);
+
+}
+
 function getCartItemsList() {
   const cookie = getCookie('cartItems');
   if (cookie == "") return [];
@@ -31,11 +64,11 @@ function getCartItemsList() {
   for (let i = 0; i < cartItemStrings.length; i++) {
     cartItems.push(JSON.parse(cartItemStrings[i]));
   }
-  console.log(cartItems);
   return cartItems;
 }
 
 function addToCart(element) {
+  
   
   const splits = window.location.pathname.split('/');
   const itemID = splits[splits.length - 1];
@@ -62,5 +95,7 @@ function addToCart(element) {
 
   const finalCookieString = cartStrings.join('-');
   setCookie('cartItems', finalCookieString, 1);
+
+  location.reload();
 
 }

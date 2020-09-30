@@ -12,3 +12,9 @@
   color: rgb(236, 65, 65);
   transition: 0.3s;
 }
+
+#emptyCart {
+  text-align: center;
+  font-size: 20px;
+  color: #b7472a;
+}
