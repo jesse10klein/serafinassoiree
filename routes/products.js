@@ -2,89 +2,36 @@ const express = require('express');
 const router = express.Router();
 const path = require('path');
 
-const itemsAvailable = [
-  {
-    imageURL: "cat1.PNG",
-    collection: 'Sale',
-    title: 'Leaf Art',
-    price: 10.99,
-    onSale: true,
-    salePrice: 10.00,
-    id: 0
-  },
-  {
-    imageURL: "cat6.PNG",
-    collection: 'Sale',
-    title: 'earrings',
-    price: 10.99,
-    onSale: true,
-    salePrice: 10.00,
-    id: 1
-  },
-  {
-    imageURL: "cat2.PNG",
-    collection: 'Sale',
-    title: 'earrings',
-    price: 10.99,
-    onSale: true,
-    salePrice: 10.00,
-    id: 2
-  },
-  {
-    imageURL: "cat3.PNG",
-    collection: 'Sale',
-    title: 'earrings',
-    price: 10.99,
-    onSale: true,
-    salePrice: 10.00,
-    id: 3
-  },
-  {
-    imageURL: "cat4.PNG",
-    collection: 'Sale',
-    title: 'earrings',
-    price: 10.99,
-    onSale: true,
-    salePrice: 10.00,
-    id: 4
-  },
-  {
-    imageURL: "cat5.PNG",
-    collection: 'Sale',
-    title: 'earrings',
-    price: 10.99,
-    onSale: true,
-    salePrice: 10.00,
-    id: 5
-  }
-];
 
-
-const collections = ['Sale', 'New Arrivals', 'Summer', 'Winter', 'Autumn', 'Spring'];
+const tools = require('./helpers');
 
 //Get all products
 router.get('/', (req, res) => {
   res.render(path.join(__dirname, '../views/product'), {
     active: {product: true},
     cart: {numItems: res.locals.cartItems.length, cartItems: res.locals.cartItems},
-    products: itemsAvailable,
+    products: tools.getItemsAvailable(),
     selected: {all: true}
   });
 })
 
 //Get a specific product
 router.get('/:productID', (req, res) => {
+  const product = tools.getProductById(parseInt(req.params.productID));
+  if (product == null) {
+    res.sendStatus(404);
+    return;
+  }
   res.render(path.join(__dirname, '../views/product-single'), {
     active: {product: true},
-    cart: {numItems: res.locals.cartItems.length, cartItems: res.locals.cartItems}
+    cart: {numItems: res.locals.cartItems.length, cartItems: res.locals.cartItems},
+    product
   });
 
 })
 
 //Get products by collection
 router.get('/collections/:collection',  (req, res) => {
- 
-  console.log("Searching by collection");
   
    let { collection } = req.params;
 
@@ -92,7 +39,7 @@ router.get('/collections/:collection',  (req, res) => {
     res.sendStatus(404);
     return;
   }
-  collection = collections[parseInt(collection)];
+  collection = tools.getCollections()[parseInt(collection)];
 
   let selected = {};
   switch(parseInt(req.params.collection)) {
@@ -118,6 +65,7 @@ router.get('/collections/:collection',  (req, res) => {
 
   filteredItems = [];
 
+  const itemsAvailable = tools.getItemsAvailable();
   for (let i = 0; i < itemsAvailable.length; i++) {
     if (itemsAvailable[i].collection == collection) {
       filteredItems.push(itemsAvailable[i]);
@@ -128,7 +76,7 @@ router.get('/collections/:collection',  (req, res) => {
 
   res.render(path.join(__dirname, '../views/product'), {
     active: {product: true},
-    cart: {numItems: cartItems.length, cartItems},
+    cart: {numItems: res.locals.cartItems.length, cartItems: res.locals.cartItems},
     products: filteredItems,
     selected
   });

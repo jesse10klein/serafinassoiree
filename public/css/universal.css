@@ -11,10 +11,45 @@
 .cartButton:hover {
   color: rgb(236, 65, 65);
   transition: 0.3s;
+  cursor: pointer;
 }
 
 #emptyCart {
   text-align: center;
   font-size: 20px;
   color: #b7472a;
+}
+
+#socials {
+  position: relative !important;
+  top: -10px;
+  font-style: italic;
+  color: white;
+  font-size: 25px;
+}
+
+#lastone {
+  margin: 0px !important;
+}
+
+#footerTitle {
+  margin-top: 10px;
+}
+
+#footer {
+  text-align: center;
+}
+
+#emptyCart {
+  text-align: center;
+}
+
+#checkoutError {
+  text-align: center;
+  color: red;
+}
+
+#responseRecorded {
+  text-align: center;
+  font-size: 20px;
 }

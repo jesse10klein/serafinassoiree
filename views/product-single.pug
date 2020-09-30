@@ -13,6 +13,8 @@ head
   link(rel='stylesheet' href='/css/flaticon.css')
   link(rel='stylesheet' href='/css/style.css')
   link(rel='stylesheet' href='/css/universal.css')
+  link(rel='stylesheet' href='/css/product.css')
+
 
 include ./navbar
 
@@ -30,18 +32,17 @@ section.hero-wrap.hero-wrap-2(style="background-image: url('/images/bg_final2.pn
             a(href='product.html')
               | Products 
               i.fa.fa-chevron-right
-          span
-            | Products Single 
+          span= `${product.title}`
             i.fa.fa-chevron-right
-        h2.mb-0.bread Products Single
+        h2.mb-0.bread= `${product.title}`
 section.ftco-section
   .container
     .row
       .col-lg-6.mb-5.ftco-animate
         a.image-popup.prod-img-bg(href='/images/prod-1.jpg')
-          img.img-fluid(src='/images/cat1.PNG' alt='Colorlib Template')
+          img.img-fluid(src=`/images/${product.imageURL}` alt='Colorlib Template')
       .col-lg-6.product-details.pl-md-5.ftco-animate
-        h3 Bacardi 151 Degree
+        h3= product.title
         .rating.d-flex
           p.text-left.mr-4
             a.mr-2(href='#') 5.0
@@ -63,8 +64,14 @@ section.ftco-section
             a.mr-2(href='#' style='color: #000;')
               | 500 
               span(style='color: #bbb;') Sold
+              
         p.price
-          span $120.00
+          if product.onSale
+            span.price.price-sale= `$${product.price}`
+            span.price= `$${product.salePrice}`
+          else
+            span.price= `$${product.price}`
+
         p
           | A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.
         p
@@ -80,7 +87,7 @@ section.ftco-section
                 i.fa.fa-plus
           .w-100
           .col-md-12
-            p(style='color: #000;') 80 piece available
+            p#numAvailable(style='color: #000;')= `${product.numAvailable} available`
         p
           a.btn.btn-primary.py-3.px-5.mr-2(onClick="addToCart(this)") Add to Cart
           a.btn.btn-primary.py-3.px-5() Buy now

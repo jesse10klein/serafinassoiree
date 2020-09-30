@@ -23,6 +23,30 @@ function getCookie(cname) {
   return "";
 }
 
+function removeCartItem(element) {
+  const id = element.id;
+ 
+  const cartItems = getCartItemsList();
+
+  for (let i = 0; i < cartItems.length; i++) {
+    if (cartItems[i].itemID == id) {
+      cartItems.splice(i, 1);
+      break;
+    }
+  }
+
+  let cartStrings = [];
+  for (let i = 0; i < cartItems.length; i++) {
+    cartStrings.push(JSON.stringify(cartItems[i]));
+  }
+
+  const finalCookieString = cartStrings.join('-');
+  setCookie('cartItems', finalCookieString, 1);
+
+  location.reload();
+
+}
+
 function removeItem(element) {
 
   $('#cartNumItems')[0].innerText -= 1;
@@ -44,7 +68,6 @@ function removeItem(element) {
       break;
     }
   }
-  console.log(cartItems);
 
   let cartStrings = [];
   for (let i = 0; i < cartItems.length; i++) {
@@ -69,7 +92,6 @@ function getCartItemsList() {
 
 function addToCart(element) {
   
-  
   const splits = window.location.pathname.split('/');
   const itemID = splits[splits.length - 1];
   const quantity = $(element).parent().parent().find('.quantity')[0].value;
@@ -81,10 +103,20 @@ function addToCart(element) {
     if (cartItems[i].itemID == itemID) {
       cartItems[i].quantity = parseInt(cartItems[i].quantity)
       cartItems[i].quantity += parseInt(quantity);
+      if (cartItems[i].quantity > parseInt($('#numAvailable')[0].innerText)) {
+        $("#numAvailable").css({'color': 'red', 'text-decoration': 'underline'});
+        return;
+      }
       itemExisted = true;
     }
   }
+
+  $("#numAvailable").css({'color': 'black', 'text-decoration': 'none'});
   if (!itemExisted) {
+    if (quantity > parseInt($('#numAvailable')[0].innerText)) {
+      $("#numAvailable").css('color', 'red');
+      return;
+    }
     cartItems.push({ itemID, quantity })
   }
 
@@ -98,4 +130,19 @@ function addToCart(element) {
 
   location.reload();
 
+}
+
+
+function redirectToCheckout() {
+  if ($(".selectpicker")[0].value == '0') {
+    setCookie('shipping', 0, 1);
+  }
+  else {
+    setCookie('shipping', 9.99, 1);
+  }
+  window.location.pathname = '/checkout';
+}
+
+function displayCheckoutError() {
+  $("#checkoutError").text("Orders cannot be placed at this time, sorry for any inconvenience.");
 }

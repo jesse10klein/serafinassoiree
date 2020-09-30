@@ -5,13 +5,15 @@ head
   meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
   link(href='https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,200;0,300;0,400;0,500;0,700;0,800;1,200;1,300;1,400;1,500;1,700&display=swap' rel='stylesheet')
   link(rel='stylesheet' href='https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css')
-  link(rel='stylesheet' href='css/animate.css')
-  link(rel='stylesheet' href='css/owl.carousel.min.css')
-  link(rel='stylesheet' href='css/owl.theme.default.min.css')
-  link(rel='stylesheet' href='css/magnific-popup.css')
+  link(rel='stylesheet' href='/css/animate.css')
+  link(rel='stylesheet' href='/css/owl.carousel.min.css')
+  link(rel='stylesheet' href='/css/owl.theme.default.min.css')
+  link(rel='stylesheet' href='/css/magnific-popup.css')
   link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.min.css')
-  link(rel='stylesheet' href='css/flaticon.css')
-  link(rel='stylesheet' href='css/style.css')
+  link(rel='stylesheet' href='/css/flaticon.css')
+  link(rel='stylesheet' href='/css/style.css')
+  link(rel='stylesheet' href='/css/checkout.css')
+  link(rel='stylesheet' href='/css/universal.css')
 
 include ./navbar
 
@@ -28,7 +30,11 @@ section.hero-wrap.hero-wrap-2(style="background-image: url('images/bg_final2.png
           span
             | Checkout 
             i.fa.fa-chevron-right
-        h2.mb-0.bread Checkout
+          span
+            | Payment
+            i.fa.fa-chevron-right
+        h2.mb-0.bread Payment
+
 section.ftco-section
   .container
     .row.justify-content-center
@@ -52,12 +58,14 @@ section.ftco-section
                   .icon
                     span.ion-ios-arrow-down
                   select.form-control(name='' id='')
-                    option(value='') France
-                    option(value='') Italy
-                    option(value='') Philippines
-                    option(value='') South Korea
-                    option(value='') Hongkong
-                    option(value='') Japan
+                    option(value='qld') Queensland
+                    option(value='vic') Victoria
+                    option(value='sa') South Australia
+                    option(value='wa') Western Australia
+                    option(value='nsw') New South Wales
+                    option(value='nt') Northern Territory
+                    option(value='tas') Tasmania
+                    option(value='act') Australian Capital Territory 
             .w-100
             .col-md-6
               .form-group
@@ -89,11 +97,25 @@ section.ftco-section
               .form-group.mt-4
                 .radio
                   label.mr-3
-                    input(type='radio' name='optradio')
-                    |  Create an Account?
                   label
-                    input(type='radio' name='optradio')
+                    input(id='shippingAddress' type='checkbox' name='optradio')
                     |  Ship to different address
+            .col-md-6.shippingAddress
+              .form-group
+                label(for='streetaddress') Shipping Address
+                input.form-control(type='text' placeholder='House number and street name')
+            .col-md-6.shippingAddress
+              .form-group
+                input.form-control(type='text' placeholder='Appartment, suite, unit etc: (optional)')
+            .w-100
+            .col-md-6.shippingAddress
+              .form-group
+                label(for='towncity') Town / City
+                input.form-control(type='text' placeholder='')
+            .col-md-6.shippingAddress
+              .form-group
+                label(for='postcodezip') Postcode / ZIP *
+                input.form-control(type='text' placeholder='')
         // END
         .row.mt-5.pt-3.d-flex
           .col-md-6.d-flex
@@ -101,17 +123,20 @@ section.ftco-section
               h3.billing-heading.mb-4 Cart Total
               p.d-flex
                 span Subtotal
-                span $20.60
+                span= `$${totalCost}`
               p.d-flex
                 span Delivery
-                span $0.00
-              p.d-flex
-                span Discount
-                span $3.00
+                if delivery
+                  span $9.99
+                else
+                  span $0.00
               hr
               p.d-flex.total-price
                 span Total
-                span $17.60
+                if delivery
+                  span= `$${(totalCost + 9.99).toFixed(2)}`
+                else
+                  span= `$${totalCost}`
           .col-md-6
             .cart-detail.p-3.p-md-4
               h3.billing-heading.mb-4 Payment Method
@@ -133,14 +158,9 @@ section.ftco-section
                     label
                       input.mr-2(type='radio' name='optradio')
                       |  Paypal
-              .form-group
-                .col-md-12
-                  .checkbox
-                    label
-                      input.mr-2(type='checkbox' value='')
-                      |  I have read and accept the terms and conditions
               p
-                a.btn.btn-primary.py-3.px-4(href='#') Place an order
+                button.btn.btn-primary.py-3.px-4(onClick='displayCheckoutError()') Place an order
+              p#checkoutError
       // .col-md-8
 
 include ./footer
@@ -149,18 +169,20 @@ include ./footer
   svg.circular(width='48px' height='48px')
     circle.path-bg(cx='24' cy='24' r='22' fill='none' stroke-width='4' stroke='#eeeeee')
     circle.path(cx='24' cy='24' r='22' fill='none' stroke-width='4' stroke-miterlimit='10' stroke='#F96D00')
-script(src='js/jquery.min.js')
-script(src='js/jquery-migrate-3.0.1.min.js')
-script(src='js/popper.min.js')
-script(src='js/bootstrap.min.js')
-script(src='js/jquery.easing.1.3.js')
-script(src='js/jquery.waypoints.min.js')
-script(src='js/jquery.stellar.min.js')
-script(src='js/owl.carousel.min.js')
-script(src='js/jquery.magnific-popup.min.js')
-script(src='js/jquery.animateNumber.min.js')
-script(src='js/scrollax.min.js')
+script(src='/js/jquery.min.js')
+script(src='/js/jquery-migrate-3.0.1.min.js')
+script(src='/js/popper.min.js')
+script(src='/js/bootstrap.min.js')
+script(src='/js/jquery.easing.1.3.js')
+script(src='/js/jquery.waypoints.min.js')
+script(src='/js/jquery.stellar.min.js')
+script(src='/js/owl.carousel.min.js')
+script(src='/js/jquery.magnific-popup.min.js')
+script(src='/js/jquery.animateNumber.min.js')
+script(src='/js/scrollax.min.js')
 script(src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false')
-script(src='js/google-map.js')
+script(src='/js/google-map.js')
 script(src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js')
-script(src='js/main.js')
+script(src='/js/main.js')
+script(src='/js/checkout.js')
+script(src='/js/universal.js')

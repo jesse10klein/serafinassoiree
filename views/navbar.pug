@@ -10,7 +10,7 @@ nav#ftco-navbar.navbar.navbar-expand-lg.navbar-dark.ftco_navbar.bg-dark.ftco-nav
         span.flaticon-shopping-bag
         .d-flex.justify-content-center.align-items-center#cartNumItems
           small= `${cart.numItems}`
-      .dropdown-menu.dropdown-menu-right
+      .dropdown-menu.dropdown-menu-right#cartItems
         if cart.numItems
           each item in cart.cartItems
             .dropdown-item.d-flex.align-items-start(href='#')
@@ -22,7 +22,9 @@ nav#ftco-navbar.navbar.navbar-expand-lg.navbar-dark.ftco_navbar.bg-dark.ftco-nav
                   a.price(href='#')= `$${item.price}`
                   span.quantity.ml-3= `Quantity: ${item.quantity}`
 
-              button.cartButton(onClick="removeItem(this)")= 'X'
+              button.cartButton(onClick="removeItem(this)")
+                span(aria-hidden='true')
+                  i.fa.fa-close
           a.dropdown-item.text-center.btn-link.d-block.w-100(href='/cart')
             | View All
             span.ion-ios-arrow-round-forward
@@ -49,10 +51,10 @@ nav#ftco-navbar.navbar.navbar-expand-lg.navbar-dark.ftco_navbar.bg-dark.ftco-nav
 
         if active.checkout
           li.nav-item.active
-            a.nav-link(href='/checkout') Checkout
+            a.nav-link(href='/cart') Checkout
         else
           li.nav-item
-            a.nav-link(href='/checkout') Checkout
+            a.nav-link(href='/cart') Checkout
 
         if active.contact
           li.nav-item.active

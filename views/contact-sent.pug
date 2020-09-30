@@ -38,29 +38,7 @@ section.ftco-section.bg-light
           .row.no-gutters
             .col-md-12
               .contact-wrap.w-100.p-md-5.p-4
-                h3.mb-4 Contact Us
-                form#contactForm.contactForm(method='POST' name='contactForm')
-                  .row
-                    .col-md-6
-                      .form-group
-                        label.label(for='name') Full Name
-                        input#name.form-control(type='text' name='name' placeholder='Name')
-                    .col-md-6
-                      .form-group
-                        label.label(for='email') Email Address
-                        input#email.form-control(type='email' name='email' placeholder='Email')
-                    .col-md-12
-                      .form-group
-                        label.label(for='subject') Subject
-                        input#subject.form-control(type='text' name='subject' placeholder='Subject')
-                    .col-md-12
-                      .form-group
-                        label.label(for='#') Message
-                        textarea#message.form-control(name='message' cols='30' rows='4' placeholder='Message')
-                    .col-md-12
-                      .form-group
-                        a.btn.btn-primary(type='submit' value='Send Message' href='/contact-sent') Submit
-                        .submitting
+                h2#responseRecorded= "Your response has been recorded, we'll get back to you as soon as possible"
            
 
 include ./footer
