@@ -130,7 +130,8 @@ app.get('/contact-sent', (req, res) => {
 
 
 
+const port = process.env.port || 8080; //Has to be this for nginx
 
+app.set('trust proxy', 'loopback');
 
-const port = 3001;
 app.listen(port, () => console.log(`App listening on port ${port}`));

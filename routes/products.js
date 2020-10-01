@@ -67,8 +67,14 @@ router.get('/collections/:collection',  (req, res) => {
 
   const itemsAvailable = tools.getItemsAvailable();
   for (let i = 0; i < itemsAvailable.length; i++) {
-    if (itemsAvailable[i].collection == collection) {
-      filteredItems.push(itemsAvailable[i]);
+    if (selected.sale) {
+      if (itemsAvailable[i].onSale == true) {
+        filteredItems.push(itemsAvailable[i]);
+      }
+    } else {
+      if (itemsAvailable[i].collection == collection) {
+        filteredItems.push(itemsAvailable[i]);
+      }
     }
   }
 

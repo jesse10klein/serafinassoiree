@@ -3,7 +3,7 @@
 const itemsAvailable = [
   {
     imageURL: "cat1.PNG",
-    collection: 'Sale',
+    collection: 'Summer',
     title: 'Leaf Art',
     price: 10.99,
     onSale: true,
@@ -23,7 +23,7 @@ const itemsAvailable = [
   },
   {
     imageURL: "cat2.PNG",
-    collection: 'Sale',
+    collection: 'Spring',
     title: 'earrings',
     price: 10.99,
     onSale: true,
@@ -33,7 +33,7 @@ const itemsAvailable = [
   },
   {
     imageURL: "cat3.PNG",
-    collection: 'Sale',
+    collection: 'New Arrivals',
     title: 'earrings',
     price: 10.99,
     onSale: true,

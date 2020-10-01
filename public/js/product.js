@@ -8,6 +8,11 @@ const collections = ['Sale', 'New Arrivals', 'Summer', 'Winter', 'Autumn', 'Spri
 
 $('.selectpicker').change(function(){
 
+  if (this.value == "All") {
+    window.location.pathname = '/product';
+    return;
+  }
+
   const index = collections.indexOf(this.value)
   if (index != -1) {
     window.location.pathname = `/product/collections/${index}`
